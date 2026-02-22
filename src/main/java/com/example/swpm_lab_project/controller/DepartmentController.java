@@ -1,8 +1,9 @@
 package com.example.swpm_lab_project.controller;
 
 import com.example.swpm_lab_project.entity.Department;
-import com.example.swpm_lab_project.repository.DepartmentRepository;
+import com.example.swpm_lab_project.service.DepartmentService;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -10,19 +11,19 @@ import java.util.List;
 @RequestMapping("/api/departments")
 public class DepartmentController {
 
-    private final DepartmentRepository departmentRepository;
+    private final DepartmentService departmentService; // Inject Service
 
-    public DepartmentController(DepartmentRepository departmentRepository) {
-        this.departmentRepository = departmentRepository;
+    public DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
     }
 
     @GetMapping
     public List<Department> getAllDepartments() {
-        return departmentRepository.findAll();
+        return departmentService.getAllDepartments();
     }
 
     @PostMapping
     public Department createDepartment(@RequestBody Department department) {
-        return departmentRepository.save(department);
+        return departmentService.saveDepartment(department);
     }
 }

@@ -12,6 +12,7 @@ public class Teacher {
     private Long id;
     private String name;
     private String email;
+    private String teacherId;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -58,5 +59,13 @@ public class Teacher {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
     }
 }
